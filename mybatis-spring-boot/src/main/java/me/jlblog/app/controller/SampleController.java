@@ -26,7 +26,7 @@ public class SampleController {
 		
 		List<Samples> sampleList = sampleService.findAllSample();
 		
-		sampleList.stream().forEach(obj -> System.out.println(obj.getId() + obj.getName()));
+		sampleList.stream().forEach(System.out::println);
 		
 		return null; 
 	}

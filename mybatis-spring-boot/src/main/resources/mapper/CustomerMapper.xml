@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.jlblog.app.mapper.CustomerMapper">
+    
+    <resultMap id="customerMap" type="Customer">
+        <id column="id" property="id" />
+        <result column="first_name" property="firstName" />
+        <result column="last_name" property="lastName" />
+        <result column="reg_date" property="regDate" />
+    </resultMap>
+
+    <select id="findAll" resultMap="customerMap">
+        select
+        	id, 
+        	first_name, 
+        	last_name,
+        	reg_date
+        from customer
+    </select>
+
+    <select id="findOne" resultMap="customerMap">
+        select
+        	id, 
+        	first_name, 
+        	last_name,
+        	reg_date
+        from customer
+        where id = #{id}
+    </select>
+    
+</mapper>
