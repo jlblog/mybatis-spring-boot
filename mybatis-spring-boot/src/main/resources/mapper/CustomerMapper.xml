@@ -19,7 +19,7 @@
         from customer
     </select>
 
-    <select id="findOne" resultMap="customerMap">
+    <select id="findOne" resultMap="customerMap" >
         select
         	id, 
         	first_name, 
@@ -28,5 +28,31 @@
         from customer
         where id = #{id}
     </select>
+    
+    <insert id="create" parameterType="Customer">
+    	insert into customer(
+    		first_name,
+    		last_name    		
+    	)values (
+    		#{firstName},
+    		#{lastName}
+    	)
+    	<selectKey resultType="int" keyProperty="id" order="AFTER">
+    		select last_insert_id()
+    	</selectKey>
+    </insert>
+    
+    <update id="update" parameterType="Customer">
+    	update customer set
+    		first_name = #{firstName},
+    		last_name = #{lastName},
+    		reg_date = now()
+    	where id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="Integer">
+    	delete from customer
+    	where id = #{id}
+    </delete>
     
 </mapper>

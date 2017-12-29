@@ -25,11 +25,13 @@ public class CustomerService {
 	}
 	
 	public Customer create(Customer customer){
-		return customerMapper.create(customer);
+		customerMapper.create(customer);
+		return customer;
 	}
 
 	public Customer update(Customer customer){
-		return customerMapper.update(customer);
+		customerMapper.update(customer);
+		return customer;
 	}
 	
 	public void delete(Integer id){
