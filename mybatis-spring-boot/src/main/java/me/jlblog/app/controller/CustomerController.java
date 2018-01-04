@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import me.jlblog.app.domain.Customer;
 import me.jlblog.app.domain.CustomerForm;
 import me.jlblog.app.service.CustomerService;
+import me.jlblog.app.service.LoginUserDetails;
 
 @Controller
 @RequestMapping("customers")
@@ -36,15 +38,24 @@ public class CustomerController {
 		return "customers/list";
 	}
 	
+	/**
+	 * 컨트롤러 인자에 @AuthenticationPrincipal을 붙이면 로그인 상태에 있는 LoginUserDetails객체를 가져올 수 있다.
+	 * @param form
+	 * @param result
+	 * @param model
+	 * @param userDetails
+	 * @return
+	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@Validated CustomerForm form, BindingResult result, Model model){
+	public String create(@Validated CustomerForm form, BindingResult result, Model model,
+			@AuthenticationPrincipal LoginUserDetails userDetails){
 		if(result.hasErrors()){
 			return list(model);
 		}
 		Customer customer = new Customer();
 		BeanUtils.copyProperties(form,  customer);
 		System.out.println("customer: " + customer.toString());
-		customerService.create(customer);
+		customerService.create(customer, userDetails.getUser());
 		return "redirect:/customers";
 	}
 	
@@ -69,14 +80,15 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String edit(@RequestParam Integer id, @Validated CustomerForm form, BindingResult result){
+	public String edit(@RequestParam Integer id, @Validated CustomerForm form, BindingResult result,
+			@AuthenticationPrincipal LoginUserDetails userDetails){
 		if(result.hasErrors()){
 			return editForm(id, form);
 		}
 		Customer customer = new Customer();
 		BeanUtils.copyProperties(form, customer);
 		customer.setId(id);
-		customerService.update(customer);
+		customerService.update(customer, userDetails.getUser());
 		
 		return "redirect:/customers";
 	}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>로그인 폼</title>
+<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
+</head>
+<body>
+	<div class="container">
+		<h1>고객 관리 시스템</h1>
+		<form class="form-signin" method="post" th:action="@{/login}">
+			<h2 class="form-signin-heading">로그인 폼</h2>
+			<div th:if="${param.error}" class="alert alert-danger">잘못된 아이디나 암호입니다.</div>
+			<input type="text" class="form-control" name="username" placeholder="username" requeired="requeired" autofocus="autofocus" />
+			<input type="password" class="form-control" name="password" placeholder="Password" requeired="requeired" />
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		</form>
+	</div>
+</body>
+</html>

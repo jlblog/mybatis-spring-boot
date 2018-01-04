@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import me.jlblog.app.domain.Customer;
+import me.jlblog.app.domain.User;
 import me.jlblog.app.mapper.CustomerMapper;
 
 @Service
@@ -24,12 +25,14 @@ public class CustomerService {
 		return customerMapper.findOne(id);
 	}
 	
-	public Customer create(Customer customer){
+	public Customer create(Customer customer, User user){
+		customer.setUser(user);
 		customerMapper.create(customer);
 		return customer;
 	}
 
-	public Customer update(Customer customer){
+	public Customer update(Customer customer, User user){
+		customer.setUser(user);
 		customerMapper.update(customer);
 		return customer;
 	}
