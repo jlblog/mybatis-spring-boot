@@ -12,7 +12,7 @@
 			<h1>고객 관리 시스템</h1>
 			<form th:action="@{/customers/edit}" th:object="${customerForm}" method="post" class="form-horizontal">
 				<fieldset>
-					<legend>고객정보 편집ㅈ</legend>
+					<legend>고객정보 편집</legend>
 				 	<div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error has-feedback'" >
 						<label for="lastName" class="col-sm-2 control-label">성</label>
 						<div class="col-sm-10">

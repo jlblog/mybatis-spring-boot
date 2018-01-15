@@ -34,6 +34,8 @@ public class CustomerController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model model){
 		List<Customer> customers = customerService.findAll();
+		customers.stream().forEach(cus ->  System.out.println(cus.getLastName()));
+		
 		model.addAttribute("customers", customers);
 		return "customers/list";
 	}

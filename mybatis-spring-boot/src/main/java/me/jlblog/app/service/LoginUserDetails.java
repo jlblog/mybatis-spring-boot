@@ -2,10 +2,10 @@ package me.jlblog.app.service;
 
 import org.springframework.security.core.authority.AuthorityUtils;
 
-import lombok.Getter;
+import lombok.Data;
 import me.jlblog.app.domain.User;
 
-@Getter
+@Data
 public class LoginUserDetails extends org.springframework.security.core.userdetails.User {
 
 	private static final long serialVersionUID = 1L;
@@ -24,4 +24,5 @@ public class LoginUserDetails extends org.springframework.security.core.userdeta
 		super(user.getUsername(), user.getEncodedPassword(), AuthorityUtils.createAuthorityList("ROLE_USER"));
 		this.user = user;
 	}
+	
 }
