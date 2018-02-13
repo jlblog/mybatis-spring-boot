@@ -26,5 +26,7 @@
 		<mapper resource="mapper/SampleMapper.xml" />
 		<mapper resource="mapper/CustomerMapper.xml" />
 		<mapper resource="mapper/UserMapper.xml" />
+		<mapper resource="mapper/RunchTimeMapper.xml" />
+		<mapper resource="mapper/CommonCodeMapper.xml" />
 	</mappers>
 </configuration>

@@ -34,7 +34,6 @@ public class CustomerController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model model){
 		List<Customer> customers = customerService.findAll();
-		customers.stream().forEach(cus ->  System.out.println(cus.getLastName()));
 		
 		model.addAttribute("customers", customers);
 		return "customers/list";
@@ -108,6 +107,15 @@ public class CustomerController {
 	public String edit(@RequestParam Integer id){
 		customerService.delete(id);
 		return "redirect:/customers";
+	}
+	
+	@RequestMapping(value = "/thymeleaf" )
+	public String thymeleaf(Model model) {
+		List<Customer> customers = customerService.findAll();
+		model.addAttribute("customers", customers);
+		model.addAttribute("role", "admin");
+		
+		return "thymeleaf";
 	}
 	
 }
