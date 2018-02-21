@@ -9,6 +9,22 @@ target/
 .settings
 .springBeans
 
+.src/test/
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
+.externalToolBuilders/
+*.launch
+.buildpath
+.target
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -22,3 +38,50 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+
+### compile file ###
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+ 
+### log file ###
+*.log
+ 
+### system file by os ###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
