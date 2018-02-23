@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>me.jlblog</groupId>
-	<artifactId>mybatis-spring-boot</artifactId>
-	<version>0.0.1</version>
+	<artifactId>jlhome</artifactId>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>mybatis-spring-boot</name>
@@ -88,6 +88,24 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+            	<resources>dev</resources>
+            </properties>
+        </profile>
+		<profile>
+            <id>real</id>
+            <properties>
+            	<resources>real</resources>
+            </properties>
+        </profile>
+    </profiles>
 
 
 </project>

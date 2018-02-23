@@ -4,17 +4,17 @@
 <mapper namespace="me.jlblog.app.mapper.UserMapper">
     
     <resultMap id="userMap" type="User">
-        <result column="username" property="username" />
-        <result column="encoded_password" property="encodedPassword" />
+        <result column="USERNAME" property="username" />
+        <result column="ENCODED_PASSWORD" property="encodedPassword" />
     </resultMap>
 
 
     <select id="findOne" resultMap="userMap" >
-        select
-        	username,
-        	encoded_password
-        from users
-        where username = #{username}
+        SELECT
+        	USERNAME,
+        	ENCODED_PASSWORD
+        FROM USERS
+        WHERE USERNAME = #{username}
     </select>
     
 </mapper>
