@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.jlblog.app.mapper.CommonCodeMapper">
+    
+    <resultMap id="commonCodeMap" type="CommonCode">
+        <id column="COMM_CODE" property="commCode" />
+        <result column="COMM_CODE_NAME" property="commCodeName" />
+        <result column="DESCRIPTION" property="description" />
+        <result column="USE_YN" property="useYn" />
+        <result column="REG_YMDT" property="regYmdt" />
+    </resultMap>
+
+    <select id="findAll" resultMap="commonCodeMap">
+        SELECT 
+			COMM_CODE,
+			COMM_CODE_NAME,
+			DESCRIPTION,
+			USE_YN,
+			REG_YMDT
+	 	FROM COMMON_CODE
+    </select>
+
+    <select id="findOne" resultMap="commonCodeMap" >
+         SELECT 
+			COMM_CODE,
+			COMM_CODE_NAME,
+			DESCRIPTION,
+			USE_YN,
+			REG_YMDT
+	 	FROM COMMON_CODE
+        WHERE COMM_CODE = #{commCode}
+    </select>
+    
+    <insert id="create" parameterType="commonCode">
+    	INSERT INTO COMMON_CODE (
+		    COMM_CODE, COMM_CODE_NAME, DESCRIPTION,	REG_YMDT	
+    	) VALUES (
+    		#{commCode}, #{commCodeName}, #{description}, now()
+    	)
+    </insert>
+    
+    <update id="update" parameterType="commonCode">
+    	UPDATE COMMON_CODE SET
+    		COMM_CODE_NAME = #{commCodeName},
+    		DESCRIPTION = #{description},
+    		USE_YN = #{useYn},
+    		REG_YMDT = now()
+    	WHERE COMM_CODE = #{commCode}
+    </update>
+    
+    <update id="delete" parameterType="commonCode">
+    	UPDATE COMMON_CODE SET
+    		USE_YN = N,
+    		REG_ID = #{regId},
+    		REG_YMDT = now()
+    	WHERE COMM_CODE = #{commCode}
+    </update>
+    
+    
+</mapper>

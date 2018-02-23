@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="../../../../favicon.ico" />
+
+    <title>Offcanvas template for Bootstrap</title>
+
+    <link rel="stylesheet" type="text/css" href="../../static/css/style.css" th:href="@{/css/style.css}" />
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="../../static/css/offcanvas.css" th:href="@{/css/offcanvas.css}" />
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="../../static/js/jquery-slim.min.js" th:src="@{/js/jquery-slim.min.js}" ></script>
+    <script src="../../static/js/popper.min.js" th:src="@{/js/popper.min.js}" ></script>
+    <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}" ></script>	
+    <script src="../../static/js/holder.min.js" th:src="@{/js/holder.min.js}" ></script>
+    <script src="../../static/js/offcanvas.js" th:src="@{/js/offcanvas.js}" ></script>
+    <th:block layout:fragment="js"></th:block>
+	<th:block layout:fragment="style"></th:block>
+</head>
+
+  <body class="bg-light">
+    <div th:replace="layouts/lnb :: lnbFragment"></div>
+    <div th:replace="layouts/header :: headerFragment"></div>    
+    <div layout:fragment="content"></div>
+    <div th:replace="layouts/footer :: footerFragment"></div>
+  </body>
+</html>
