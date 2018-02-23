@@ -17,7 +17,7 @@
 			COMM_CODE_NAME,
 			DESCRIPTION,
 			USE_YN,
-			REG_YMDT
+			DATE_FORMAT(REG_YMDT, '%Y-%m-%d %H:%i:%s') AS REG_YMDT
 	 	FROM COMMON_CODE
     </select>
 
@@ -27,7 +27,7 @@
 			COMM_CODE_NAME,
 			DESCRIPTION,
 			USE_YN,
-			REG_YMDT
+			DATE_FORMAT(REG_YMDT, '%Y-%m-%d %H:%i:%s') AS REG_YMDT
 	 	FROM COMMON_CODE
         WHERE COMM_CODE = #{commCode}
     </select>
