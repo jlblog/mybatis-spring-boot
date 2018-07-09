@@ -30,18 +30,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests()
-			.antMatchers("/loginForm").permitAll()
+			.antMatchers("/login").permitAll()
 			.anyRequest().authenticated();
 		http.formLogin()
-			.loginProcessingUrl("/login")
-			.loginPage("/loginForm")
-			.failureUrl("/loginForm?error")
-			.defaultSuccessUrl("/dashboard", true)
+			.loginProcessingUrl("/login")//
+			.loginPage("/login?target=http://tera-app.techhub.co.kr:9080/login")
+			.failureUrl("/login?error")
+			.defaultSuccessUrl("/dashboard?target=http://tera-app.techhub.co.kr:9080/login", true)
 			.usernameParameter("username").passwordParameter("password")
 			.and();
 		http.logout()
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))
-			.logoutSuccessUrl("/loginForm");
+			.logoutSuccessUrl("/login");
 	}
 	
 	@Configuration
