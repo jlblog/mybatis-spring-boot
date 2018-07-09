@@ -17,10 +17,10 @@ public class LoginUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-		User user = userMapper.findOne(username);
-		if(user == null){
+		User user = new User("user1", "$2a$10$W6X7RUZcrabvuiKd.cuxJu/zm6xBmpzwJJzxDpxHcCWvjvzpw33Ui");   // userMapper.findOne(username);
+		/*if(user == null){
 			throw new UsernameNotFoundException("The requested user is not found.");
-		}
+		}*/
 		
 		return new LoginUserDetails(user);
 	}

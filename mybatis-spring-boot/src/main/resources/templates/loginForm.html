@@ -6,9 +6,36 @@
 <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	    if(Cookies.get('TECHHUB_AUTH') != undefined) {
+	     	//alert(Cookies.get('TECHHUB_AUTH'));
+	    	$('#form-signin2').submit();
+	    }
+	});
+
+</script>
 </head>
 <body>
+	<form id="form-signin2" class="form-signin" method="post" th:action="@{/login}">
+		<input type="hidden" class="form-control" name="username" placeholder="username" requeired="requeired" autofocus="autofocus" value="user1" />
+		<input type="hidden" class="form-control" name="password" placeholder="Password" requeired="requeired" value="demo" />
+	</form>
+
 	<div class="container">
+		<h1>techhub.co.kr</h1>
+		<!-- <form id="form-signin" class="form-signin" method="post" th:action="@{https://tera.techhub.co.kr/_login?target=http://tera-app.techhub.co.kr:9080/login}"> -->
+		<!-- <form id="form-signin" class="form-signin" method="post" th:action="@{https://beta-tera.techhub.co.kr/_login?target=http://tera-app.techhub.co.kr:9080/login}"> -->
+		<form id="form-signin" class="form-signin" method="post" th:action="@{http://dev.tera.techhub.co.kr:8080/_login?target=http://tera-app.techhub.co.kr:9080/login}">
+			<h2 class="form-signin-heading">login test</h2>
+			<div th:if="${param.error}" class="alert alert-danger">잘못된 아이디나 암호입니다.</div>
+			<input type="text" class="form-control" name="j_username" placeholder="username" requeired="requeired" autofocus="autofocus" value="sm10745" />
+			<input type="password" class="form-control" name="j_password" placeholder="Password" requeired="requeired" value="" />
+			<button class="btn btn-lg btn-primary btn-block" type="submit" id="btn-submit">Sign in</button>
+		</form>
+	</div>
+<!-- 	<div class="container">
 		<h1>JLHome</h1>
 		<form id="form-signin" class="form-signin" method="post" th:action="@{/login}">
 			<h2 class="form-signin-heading">login</h2>
@@ -17,6 +44,6 @@
 			<input type="password" class="form-control" name="password" placeholder="Password" requeired="requeired" value="demo" />
 			<button class="btn btn-lg btn-primary btn-block" type="submit" id="btn-submit">Sign in</button>
 		</form>
-	</div>
+	</div> -->
 </body>
 </html>

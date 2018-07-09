@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+		$(document).ready(function(){
+		    $('#sub').on('click', function() {
+		    	alert(1);
+		    });
+		});
+	</script>
+</th:block>
+
 <div th:fragment="headerFragment" id="header" class="nav-scroller bg-white box-shadow">
 	<nav class="nav nav-underline">
-       	<a class="nav-link active" href="#">Sub-menu</a>
+       	<a class="nav-link active" href="#" id="sub">Sub-menu11</a>
        	<a class="nav-link" href="#">
          	Sub-menu-count
          	<span class="badge badge-pill bg-light align-text-bottom">27</span>

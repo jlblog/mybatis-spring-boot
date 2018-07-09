@@ -26,6 +26,58 @@
     <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}" ></script>	
     <script src="../../static/js/holder.min.js" th:src="@{/js/holder.min.js}" ></script>
     <script src="../../static/js/offcanvas.js" th:src="@{/js/offcanvas.js}" ></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js}"></script>
+    <script type="text/javascript">
+		
+		$(document).ready(function(){
+		    if(Cookies.get('TECHHUB_AUTH') == undefined) {
+		    	location.href="/login";
+		    }
+		});
+    
+    	function _setGlobalParameter() {
+			/* var value = $('#_gl_siteUserId').val() + ';' + $('#_gl_siteUserLoginId').val() + ';' + $('#_gl_siteId').val() + ';' + $('#_gl_siteName').val() + ';' + $('#_gl_startYmd').val() + ';' + $('#_gl_endYmd').val(); */
+			var value = '99471;Bnsmep;0;pro.techhub.co.kr;20180501;20180509;'
+			Cookies.set("LA_GL_VAL", value, {path: '/', domain: 'techhub.co.kr', secure: false });
+		}
+		
+		function getData() {
+			$.ajax({
+		 		url: 'http://dev.tera.techhub.co.kr:8080/adeffect/summary/chart',
+		 		/* url: 'https://beta-tera.techhub.co.kr/adeffect/summary/chart', */ 
+				dataType: 'json',
+		 		type: 'GET',
+		 		xhrFields: {withCredentials: true}
+		 	}).done(function(result, status) {
+		 		console.log('sucess' + result);
+	 			if (result.success) {
+	 				console.log(result.data.inflCnt);
+	 			} else {
+	 				alert('오류가 발생하였습니다.');
+	 			}
+		 	}).error(function(request, status, error){
+		 		console.log(request.status + ', ' + status);
+		 	});
+		}
+		
+		function checkStatus() {
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() { // 요청에 대한 콜백
+				console.log('call');
+			  if (xhr.readyState === xhr.DONE) { // 요청이 완료되면
+				  console.log('complete' + xhr.status);
+			    if (xhr.status === 200 || xhr.status === 201) {
+			      console.log(xhr.responseText);
+			    } else {
+			      console.error(xhr.responseText);
+			    }
+			  }
+			};
+			xhr.open('GET', 'http://dev.tera.techhub.co.kr:8080/adeffect/summary/chart'); // 메소드와 주소 설정
+			xhr.send(); // 요청 전송 
+			// xhr.abort(); // 전송된 요청 취소
+		}
+    </script>
     <th:block layout:fragment="script"></th:block>
 	<th:block layout:fragment="style"></th:block>
 </head>

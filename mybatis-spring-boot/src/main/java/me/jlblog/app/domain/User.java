@@ -5,15 +5,12 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = "customers")
 public class User {
-
+	
 	private String username;
 
 	@JsonIgnore
@@ -22,6 +19,11 @@ public class User {
 	@JsonIgnore
 	private List<Customer> customers;
 
+	public User (String username, String password) {
+		this.username = username;
+		this.encodedPassword = password;
+	}
+	
 	public String getUsername() {
 		return username;
 	}
